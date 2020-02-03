@@ -9,6 +9,6 @@ interface UserRepositoryInterface
 
     public function getAll();
 
-    public function update($userID, $userData);
+    public function update($user, $userData);
 
 }

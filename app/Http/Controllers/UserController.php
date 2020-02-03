@@ -88,7 +88,7 @@ class UserController extends Controller
     {
         $userData = $request->all();
 
-        $validator = Validator::make($userData, User::$rules);
+        $validator = Validator::make($userData, User::getRules('update', $userID));
 
         if (!$this->validateRequest($validator)) {
             return response()->json([
@@ -96,7 +96,9 @@ class UserController extends Controller
             ]);
         }
 
-        $this->userRepository->update($userID, $userData);
+        $user = $this->userRepository->find($userID);
+
+        $this->userRepository->update($user, $userData);
 
         return response()->json([
             'message' => "User Updated"

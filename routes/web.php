@@ -20,6 +20,6 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
     $router->get('users', 'UserController@viewAll');
     $router->get('user/{userID}', 'UserController@view');
     $router->post('user', 'UserController@create');
-    $router->put('user/{userID}', 'UserController@update');
+    $router->post('user/{userID}', 'UserController@update');
     $router->delete('user/{userID}', 'UserController@delete');
 });

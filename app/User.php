@@ -42,6 +42,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'role_id' => 'required|integer',
     ];
 
+    public static function getRules($type, $userID = null) {
+
+        $rules = self::$rules;
+
+        switch ($type) {
+            CASE 'update':
+                $rules ['email'] = 'email|unique:users,email,' . (int)$userID;
+                break;
+
+        }
+
+        return $rules;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
