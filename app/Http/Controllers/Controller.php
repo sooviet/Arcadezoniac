@@ -11,9 +11,7 @@ class Controller extends BaseController
     public function validateRequest($validator)
     {
         if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors()
-            ]);
+            return false;
         }
 
         return true;

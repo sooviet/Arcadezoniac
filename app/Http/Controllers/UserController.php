@@ -65,7 +65,11 @@ class UserController extends Controller
 
         $validator = Validator::make($userData, User::$rules);
 
-        $this->validateRequest($validator);
+        if (!$this->validateRequest($validator)) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ]);
+        }
 
         $this->userRepository->create($userData);
 
@@ -86,7 +90,11 @@ class UserController extends Controller
 
         $validator = Validator::make($userData, User::$rules);
 
-        $this->validateRequest($validator);
+        if (!$this->validateRequest($validator)) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ]);
+        }
 
         $this->userRepository->update($userID, $userData);
 
