@@ -15,11 +15,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api/v1'], function () use ($app) {
+$router->group(['prefix' => 'api/v1'], function () use ($router) {
 
-    $app->get('users', 'UserController@viewAll');
-    $app->get('user/{userID}', 'UserController@view');
-    $app->post('user', 'UserController@create');
-    $app->put('user/{userID}', 'UserController@update');
-    $app->delete('user/{userID}', 'UserController@delete');
+    $router->get('users', 'UserController@viewAll');
+    $router->get('user/{userID}', 'UserController@view');
+    $router->post('user', 'UserController@create');
+    $router->put('user/{userID}', 'UserController@update');
+    $router->delete('user/{userID}', 'UserController@delete');
 });

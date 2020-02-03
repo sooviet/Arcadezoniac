@@ -2,12 +2,15 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     protected $userRepository;
 
+    // inject user repository interface
     public function __construct(UserRepositoryInterface
                                 $userRepository)
     {
@@ -15,6 +18,8 @@ class UserController extends Controller
     }
 
     /**
+     * View all user records
+     *
      * @param Request $request
      * @return \Illuminate\View\View
      */
@@ -28,7 +33,9 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * View particular user detail
+     *
+     * @param $userID
      * @return \Illuminate\View\View
      */
     public function view($userID)
@@ -47,12 +54,18 @@ class UserController extends Controller
     }
 
     /**
+     * Create a user record
+     *
      * @param Request $request
      * @return \Illuminate\View\View
      */
     public function create(Request $request)
     {
         $userData = $request->all();
+
+        $validator = Validator::make($userData, User::$rules);
+
+        $this->validateRequest($validator);
 
         $this->userRepository->create($userData);
 
@@ -62,12 +75,18 @@ class UserController extends Controller
     }
 
     /**
+     * Update a user
+     *
      * @param Request $request
      * @return \Illuminate\View\View
      */
     public function update(Request $request, $userID)
     {
         $userData = $request->all();
+
+        $validator = Validator::make($userData, User::$rules);
+
+        $this->validateRequest($validator);
 
         $this->userRepository->update($userID, $userData);
 
@@ -77,7 +96,9 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Delete user
+     *
+     * @param $userID
      * @return \Illuminate\View\View
      */
     public function delete($userID)

@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email', 'address', 'role_id'
     ];
 
     /**
@@ -29,4 +29,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * Validation Rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'string|required',
+        'email' => 'email|required',
+        'address' => 'required',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

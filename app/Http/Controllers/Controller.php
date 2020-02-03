@@ -7,4 +7,15 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     //
+
+    public function validateRequest($validator)
+    {
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ]);
+        }
+
+        return true;
+    }
 }
