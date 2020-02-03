@@ -20,11 +20,22 @@ DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
 
+Migrate the database tables
+```
+php artisan migrate
+```
+
+Seed the tables with some test data
+```
+php artisan db:seed
+```
+
+We are ready to serve the app on local server
 ```
 php -S localhost:8000 -t public
 ```
 
-Now you can access your api by going to localhost:8000/api/v1
+Now you can access your api by going to localhost:8000/api/v1 on your browser
 
 Here are the urls:
 * Create user : [POST] localhost:8000/api/v1/user
