@@ -39,11 +39,11 @@ Now you can access your api by going to localhost:8000/api/v1 on your browser
 
 Here are the urls:
 * Create user : [POST] localhost:8000/api/v1/user
+    * Post Data Required: (name, email, address, role_id)
 * View user : [GET] localhost:8000/api/v1/user/(user-id)
 * Update user : [PUT] localhost:8000/api/v1/user/(user-id)
 * Delete user : [DELETE] localhost:8000/api/v1/user/(user-id)
 * View all users : [GET] localhost:8000/api/v1/users
-
 
 ## Testing
 
